@@ -1,0 +1,101 @@
+<div class="content" roler="main">
+    <h1>Componente Pergunta</h1>
+  <h2>Perguntas</h2>
+    <button mat-fab color="primary" class="botaosalvar" (click)="novaPergunta()" >
+      <mat-icon>add</mat-icon>
+    </button>
+    <form class="formulario" *ngIf='mostrarForm'>
+      <mat-form-field appearance="fill" class="hid">
+        <mat-label>Id</mat-label>
+        <input matInput [(ngModel)]="pergunta.id" type="text" name="id" readonly >
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Título</mat-label>
+        <input matInput [(ngModel)]="pergunta.titulo" type="text" name="nome">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Resposta 1</mat-label>
+        <input matInput [(ngModel)]="pergunta.resposta1" type="text" name="resposta1">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Resposta 2</mat-label>
+        <input matInput [(ngModel)]="pergunta.resposta2" type="text" name="resposta2">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Resposta 3</mat-label>
+        <input matInput [(ngModel)]="pergunta.resposta3" type="text" name="resposta3">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Resposta Correta</mat-label>
+        <input matInput [(ngModel)]="pergunta.respostaCorreta" type="text" name="respostaCorreta">
+      </mat-form-field>
+      <div class="botoes">
+        <button mat-fab color="primary" class="botaosalvar" (click)="salvar()" >
+            <mat-icon>send</mat-icon>
+        </button>
+        <button mat-fab color="warn" class="botaosalvar" (click)="cancelar()" >
+            <mat-icon>clear</mat-icon>
+        </button>
+      </div>
+     
+    </form>
+    <ng-template [ngIf]="!temDados">
+      <mat-spinner NgFor="!dataSource" ></mat-spinner>
+    </ng-template>
+    
+    <ng-template [ngIf]="temDados">
+      <table mat-table #tabela [dataSource]="dataSource" class="mat-elevation-z8">
+  
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Position Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> Id </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="titulo">
+          <th mat-header-cell *matHeaderCellDef> Título </th>
+          <td mat-cell *matCellDef="let element"> {{element.titulo}} </td>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="Resposta1">
+          <th mat-header-cell *matHeaderCellDef> Resposta 1 </th>
+          <td mat-cell *matCellDef="let element"> {{element.resposta1}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Resposta2">
+            <th mat-header-cell *matHeaderCellDef> Resposta 2 </th>
+            <td mat-cell *matCellDef="let element"> {{element.resposta2}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Resposta3">
+            <th mat-header-cell *matHeaderCellDef> Resposta 3 </th>
+            <td mat-cell *matCellDef="let element"> {{element.resposta3}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Resposta Correta">
+            <th mat-header-cell *matHeaderCellDef> Resposta Correta </th>
+            <td mat-cell *matCellDef="let element"> {{element.respostaCorreta}} </td>
+          </ng-container>
+    
+        <ng-container matColumnDef="acoes">
+          <th mat-header-cell *matHeaderCellDef> Ações </th>
+          <td mat-cell *matCellDef="let element"> 
+            <button mat-raised-button color="primary" (click)="editar(element)">Editar</button>
+            <button mat-raised-button color="accent" (click)='delete(element.id)'>Deletar</button>
+          </td>
+        </ng-container>
+      
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </ng-template>
+  
+  </div>

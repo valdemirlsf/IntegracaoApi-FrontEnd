@@ -1,0 +1,66 @@
+<div class="content" roler="main">
+  <h1>Componente Pessoa</h1>
+<h2>Pessoas</h2>
+  <button mat-fab color="primary" class="botaosalvar" (click)="novaPessoa()" >
+    <mat-icon>add</mat-icon>
+  </button>
+  <form class="formulario" *ngIf='mostrarForm'>
+    <mat-form-field appearance="fill" class="hid">
+      <mat-label>Id</mat-label>
+      <input matInput [(ngModel)]="pessoa.id" type="text" name="id" readonly >
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Nome</mat-label>
+      <input matInput [(ngModel)]="pessoa.nome" type="text" name="nome">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Idade</mat-label>
+      <input matInput [(ngModel)]="pessoa.idade" type="text" name="idade">
+    </mat-form-field>
+    <button mat-fab color="primary" class="botaosalvar" (click)="salvar()" >
+      <mat-icon>send</mat-icon>
+    </button>
+  </form>
+  <ng-template [ngIf]="!temDados">
+    <mat-spinner NgFor="!dataSource" ></mat-spinner>
+  </ng-template>
+  
+  <ng-template [ngIf]="temDados">
+    <table mat-table #tabela [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+    
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="Nome">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+      </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Idade">
+        <th mat-header-cell *matHeaderCellDef> Idade </th>
+        <td mat-cell *matCellDef="let element"> {{element.idade}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Ações">
+        <th mat-header-cell *matHeaderCellDef> Ações </th>
+        <td mat-cell *matCellDef="let element"> 
+          <button mat-raised-button color="primary" (click)="editar(element)">Editar</button>
+          <button mat-raised-button color="accent" (click)='delete(element.id)'>Deletar</button>
+        </td>
+      </ng-container>
+    
+      
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </ng-template>
+
+</div>
