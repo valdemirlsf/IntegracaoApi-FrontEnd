@@ -22,6 +22,6 @@ export class PerguntaService{
         return this.http.delete<Pergunta>(this.url_api+'/pergunta/'+id);
     }
     update (pergunta: Pergunta){
-        return this.http.put<Pergunta[]>(this.url_api+'/pergunta/'+pergunta.id, Pergunta);
+        return this.http.put<Pergunta[]>(this.url_api+'/pergunta/'+pergunta.id, pergunta);
     }
 }

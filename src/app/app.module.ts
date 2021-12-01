@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { PerguntaComponent } from './pergunta-component/pergunta-component.component';
 import { PessoaComponent } from './pessoa-component/pessoa-component.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 @NgModule({
   declarations: [
@@ -29,7 +30,9 @@ import { PessoaComponent } from './pessoa-component/pessoa-component.component';
     MatButtonModule,
     FormsModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule
+    
     
   ],
   providers: [],

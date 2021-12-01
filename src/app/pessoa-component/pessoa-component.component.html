@@ -1,6 +1,5 @@
 <div class="content" roler="main">
-  <h1>Componente Pessoa</h1>
-<h2>Pessoas</h2>
+  <h2>Componente Pessoa</h2>
   <button mat-fab color="primary" class="botaosalvar" (click)="novaPessoa()" >
     <mat-icon>add</mat-icon>
   </button>
@@ -19,6 +18,9 @@
     </mat-form-field>
     <button mat-fab color="primary" class="botaosalvar" (click)="salvar()" >
       <mat-icon>send</mat-icon>
+    </button>
+    <button mat-fab color="warn" class="botaosalvar" (click)="cancelar()" >
+      <mat-icon>clear</mat-icon>
     </button>
   </form>
   <ng-template [ngIf]="!temDados">

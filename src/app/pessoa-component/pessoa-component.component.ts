@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import { PessoaService } from '../service/pessoa.service';
 import { Pessoa } from '../model/pessoa';
 
@@ -14,7 +15,7 @@ export class PessoaComponent implements OnInit {
   pessoa: Pessoa = new Pessoa();
   mostrarForm: boolean = false;
   temDados: boolean = false;
-  constructor(private service: PessoaService){
+  constructor(private service: PessoaService, private _snackBar: MatSnackBar){
     
   }
   
@@ -22,7 +23,11 @@ export class PessoaComponent implements OnInit {
     this.findAll();
   }
   
-  
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action,{
+      duration: 2000
+    });
+  }
   
   findAll(){
     this.service.findAll().subscribe(
@@ -39,6 +44,7 @@ export class PessoaComponent implements OnInit {
   delete(id: Number){
     this.service.delete(id).subscribe(
       (response) =>{
+        this.openSnackBar('Deletado com sucesso', 'fechar');
         console.log(id+'deletado com sucesso');
         this.findAll();
       },
@@ -57,20 +63,20 @@ export class PessoaComponent implements OnInit {
       this.service.update(this.pessoa).subscribe(
         (response)=>{
           this.findAll();
-          console.log("funcionou");
+          this.openSnackBar('Alterado com sucesso', 'Fechar');
         },
         (response)=>{
-          console.log("Não foi")
+          this.openSnackBar('Não foi possível alterar Pessoa', 'Fechar');
         }  
       );
     }else{
       this.service.create(this.pessoa).subscribe(
         (response) => {
+          this.openSnackBar('Salvo', 'Fechar');
           this.findAll();
-          console.log('cadastro efetuado com sucesso');
         },
         (response) => {
-          console.log('Não conseguimos cadastrar')
+          this.openSnackBar('Não foi possível salvar', 'Fechar');
         }
       );
     }
@@ -81,10 +87,8 @@ export class PessoaComponent implements OnInit {
     this.mostrarForm = true;
     this.pessoa = new Pessoa();
   }
-}
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+  cancelar(){
+    this.mostrarForm=false;
+    this.pessoa = new Pessoa();
+  }
 }

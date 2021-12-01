@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { PessoaService } from './service/pessoa.service';
 import { Pessoa } from './model/pessoa';
-import { MatSpinner } from '@angular/material/progress-spinner';
+
 
 @Component({
   selector: 'app-root',
