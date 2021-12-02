@@ -1,0 +1,12 @@
+<div class="content">
+    <h2>Simulado</h2>
+    <h3>{{pergunta.titulo}}?</h3>
+    <mat-card id="resposta1" (click)="cliquePergunta(pergunta.resposta1, 'resposta1')">A) {{pergunta.resposta1}}</mat-card>
+    <mat-divider></mat-divider>
+    <mat-card id="resposta2" (click)="cliquePergunta(pergunta.resposta2, 'resposta2')">B) {{pergunta.resposta2}}</mat-card>
+    <mat-divider></mat-divider>
+    <mat-card id="resposta3" (click)="cliquePergunta(pergunta.resposta3, 'resposta3')">C) {{pergunta.resposta3}}</mat-card>
+    <div><h2 id="mensagem">{{acertouMessage}}</h2></div>
+</div>
+
+
